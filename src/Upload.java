@@ -35,10 +35,15 @@ public class Upload {
 		} else if(command.equalsIgnoreCase("delete")){
 			DropBoxWrapper dropBox = new DropBoxWrapper();
 	        dropBox.auth();
-	        if(dropBox.delete(path)){
-	        	System.out.println("Successful deleted " + path);	
+	        String _path = path;
+	        if(path.startsWith("http")){
+	        	String[] url = path.split("/");
+		        _path = "/public/" + url[url.length - 1];	
+	        }
+	        if(dropBox.delete(_path)){
+	        	System.out.println("Successful deleted " + _path);	
 	        } else {
-	        	System.out.println("Error deleting " + path);
+	        	System.out.println("Error deleting " + _path);
 	        }
 		} else {
 			System.out.println("Command " + command + " not found. Try: upload or delete");
