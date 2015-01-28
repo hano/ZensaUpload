@@ -5,3 +5,4 @@ bin/
 .project
 .DS_Store
 .classpath
+deploy_config.txt

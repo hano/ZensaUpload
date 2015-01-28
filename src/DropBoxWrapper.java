@@ -108,6 +108,17 @@ public class DropBoxWrapper {
 			inputStream.close();
 		}
 	}
+	
+	public boolean delete(String path){
+		try {
+			this.client.delete(path);
+		} catch (DbxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 
 	String getShareURL(String strURL) {
 		URLConnection conn = null;
