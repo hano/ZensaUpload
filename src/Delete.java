@@ -15,7 +15,6 @@ public class Delete {
 	public void delete() throws Exception {
 		ArrayList<String> folders = new ArrayList<String>();
 		folders.add(this.rootPath);
-		folders.add(this.rootPath + "/templates");
 		folders.add(this.rootPath + "/templates_c");
 		folders.add(this.rootPath + "/templates_c_portal");
 

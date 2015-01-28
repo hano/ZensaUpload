@@ -1,14 +1,14 @@
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
 
 
 public class Upload {
 
-	public static void main(String[] args) throws Exception {
-		
-		long millis = System.currentTimeMillis();
-		String zipName = millis + ".zip";
+	public static void main(String[] args) throws Exception {		
+		String zipName = new SimpleDateFormat("yyyy-MM-dd-HH_mm").format(new Date()) + ".zip";
 		String zipPath = FileUtils.getTempDirectoryPath() + zipName;
 		
 		Delete del = new Delete(args[0]);
