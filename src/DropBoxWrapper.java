@@ -33,6 +33,7 @@ public class DropBoxWrapper {
 	private DbxClient client;
 	private String accessToken;
 	private File tokenFile = new File("token.txt");
+	private File urlFile = new File("url.txt");
 	private File configFile = new File("deploy_config.txt");
 
 	public DropBoxWrapper() {
@@ -98,9 +99,15 @@ public class DropBoxWrapper {
 			String publicURL = "https://dl.dropboxusercontent.com/u/"
 					+ this.client.getAccountInfo().userId + "/"
 					+ uploadedFile.name;
-			StringSelection stringSelection = new StringSelection(publicURL);
-			Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
-			clpbrd.setContents(stringSelection, null);
+			//StringSelection stringSelection = new StringSelection(publicURL);
+			//Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+			//clpbrd.setContents(stringSelection, null);
+			try {
+				FileUtils.writeStringToFile(this.urlFile, publicURL);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			System.out
 					.println("Uploaded and copied to clipboard: " + publicURL);
