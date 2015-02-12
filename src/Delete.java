@@ -17,6 +17,7 @@ public class Delete {
 		folders.add(this.rootPath);
 		folders.add(this.rootPath + "/templates_c");
 		folders.add(this.rootPath + "/templates_c_portal");
+		folders.add(this.rootPath + "/templates_c_website");
 
 		ArrayList<File> filesToDelete = new ArrayList<File>();
 
