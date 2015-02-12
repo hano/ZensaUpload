@@ -12,7 +12,7 @@ public class Upload {
 		String path = args[1];
 		
 		if(command.equalsIgnoreCase("upload")){
-			String zipName = new SimpleDateFormat("yyyy-MM-dd-HH_mm").format(new Date()) + ".zip";
+			String zipName = new SimpleDateFormat("yyyy-MM-dd-HH_mm_ss").format(new Date()) + ".zip";
 			String zipPath = FileUtils.getTempDirectoryPath() + zipName;
 			
 			Delete del = new Delete(path);
