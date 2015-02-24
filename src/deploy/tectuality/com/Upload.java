@@ -48,12 +48,13 @@ public class Upload {
 			Boolean result = false;
 	        if(path.startsWith("http")){
 	        	String[] url = path.split("/");
-		        _path = "/public/" + url[url.length - 1];	
+		        _path = url[url.length - 1];	
 	        }
 			
 			if(useDropbox.equalsIgnoreCase("true")){
 				DropBoxWrapper dropBox = new DropBoxWrapper();
 		        dropBox.auth();
+		        _path = "/public/" + _path;
 		        result = dropBox.delete(_path);
 			} else {
 				FTPWrapper ftp = new FTPWrapper();
