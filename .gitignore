@@ -9,3 +9,4 @@ bin/
 deploy_config.txt
 .classpath
 bin/*
+url.txt

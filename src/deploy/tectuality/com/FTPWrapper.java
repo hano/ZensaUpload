@@ -21,8 +21,10 @@ public class FTPWrapper {
 	private int port;
     private String user;
     private String pass;
+    private String urlPrefix;
     private FTPClient ftpClient;
     private File configFile = new File("deploy_config.txt");
+    private File urlFile = new File("url.txt");
     
     public FTPWrapper() throws IOException{
 		String[] config = FileUtils.readFileToString(configFile).split("\n");
@@ -30,6 +32,7 @@ public class FTPWrapper {
         this.port = Integer.parseInt(config[1]);
         this.user = config[2];
         this.pass = config[3];
+        this.urlPrefix = config[4];
         this.ftpClient = new FTPClient();
     }
     
@@ -39,6 +42,7 @@ public class FTPWrapper {
             this.port = Integer.parseInt(args[1]);
             this.user = args[2];
             this.pass = args[3];
+            this.urlPrefix = args[4];
             this.ftpClient = new FTPClient();
     	} else {
     		throw new Exception("missing arguments");	
@@ -76,6 +80,12 @@ public class FTPWrapper {
             if (done) {
                 System.out.println("The first file is uploaded successfully.");
             }
+            try {
+				FileUtils.writeStringToFile(this.urlFile, this.urlPrefix + remoteFilePath);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
  
         } catch (IOException ex) {
             System.out.println("Error: " + ex.getMessage());
