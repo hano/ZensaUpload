@@ -72,6 +72,7 @@ public class FTPWrapper {
             File firstLocalFile = new File(localFilePath);
  
             String firstRemoteFile = remoteFilePath;
+            System.out.println(localFilePath);
             InputStream inputStream = new FileInputStream(firstLocalFile);
  
             System.out.println("Start uploading file");
