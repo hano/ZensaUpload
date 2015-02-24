@@ -85,7 +85,7 @@ public class Zip {
                 /*
                  * write the file to the output
                  */
-            	if(srcFile.equalsIgnoreCase(this.rootFolder + "/config.php") || srcFile.equalsIgnoreCase(this.rootFolder + "config.php")  || srcFile.equalsIgnoreCase(this.rootFolder + "/config.template.php")  || srcFile.equalsIgnoreCase(this.rootFolder + "/config.template.php") ){
+            	if(path.equalsIgnoreCase("web")){
             		return;
             	}
             	
@@ -113,7 +113,7 @@ public class Zip {
          * check the empty folder
          */
         if (folder.list().length == 0) {
-            addFileToZip(path, srcFolder, zip, true);
+        	addFileToZip(path, srcFolder, zip, true);
         } else {
             /*
              * list the files in the folder
