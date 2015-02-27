@@ -51,7 +51,7 @@ public class Zip {
         /*
          * add the folder to the zip
          */
-        addFolderToZip("", srcFolder, zip);
+        addFolderToZip("", srcFolder, zip, true);
         /*
          * close the zip objects
          */
@@ -62,7 +62,7 @@ public class Zip {
     /*
      * recursively add files to the zip files
      */
-    private void addFileToZip(String path, String srcFile, ZipOutputStream zip, boolean flag) throws Exception {
+    private void addFileToZip(String path, String srcFile, ZipOutputStream zip, boolean flag, boolean firstCall) throws Exception {
         /*
          * create the file object for inputs
          */
@@ -81,12 +81,12 @@ public class Zip {
                 /*
                  * if folder is not empty
                  */
-                addFolderToZip(path, srcFile, zip);
+                addFolderToZip(path, srcFile, zip, false);
             } else {
                 /*
                  * write the file to the output
                  */
-            	if(path.equalsIgnoreCase("web")){
+            	if(firstCall){
             		return;
             	}
             	
@@ -107,23 +107,23 @@ public class Zip {
     /*
      * add folder to the zip file
      */
-    private void addFolderToZip(String path, String srcFolder, ZipOutputStream zip) throws Exception {
+    private void addFolderToZip(String path, String srcFolder, ZipOutputStream zip, boolean firstCall) throws Exception {
         File folder = new File(srcFolder);
 
         /*
          * check the empty folder
          */
         if (folder.list().length == 0) {
-        	addFileToZip(path, srcFolder, zip, true);
+        	addFileToZip(path, srcFolder, zip, true, firstCall);
         } else {
             /*
              * list the files in the folder
              */
             for (String fileName : folder.list()) {
                 if (path.equals("")) {
-                    addFileToZip(folder.getName(), srcFolder + "/" + fileName, zip, false);
+                    addFileToZip(folder.getName(), srcFolder + "/" + fileName, zip, false, firstCall);
                 } else {
-                    addFileToZip(path + "/" + folder.getName(), srcFolder + "/" + fileName, zip, false);
+                    addFileToZip(path + "/" + folder.getName(), srcFolder + "/" + fileName, zip, false, firstCall);
                 }
             }
         }
