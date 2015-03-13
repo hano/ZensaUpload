@@ -29,7 +29,7 @@ public class Zip {
              */
             zipFolder(srcFolder, destZipFile);
             result = true;
-            System.out.println("Given files are successfully zipped");
+            System.out.println("Given files are successfully zipped to " + destZipFile);
         } catch (Exception e) {
             System.out.println("Some Errors happned during the zip process");
         } finally {
@@ -67,13 +67,12 @@ public class Zip {
          * create the file object for inputs
          */
         File folder = new File(srcFile);
-
         /*
          * if the folder is empty add empty folder to the Zip file
          */
         if (flag == true) {
             zip.putNextEntry(new ZipEntry(path + "/" + folder.getName() + "/"));
-        } else if(!folder.isHidden()){ /*
+        } else if(!folder.isHidden() || folder.getName().equalsIgnoreCase(".htaccess")){ /*
                  * if the current name is directory, recursively traverse it
                  * to get the files
                  */
